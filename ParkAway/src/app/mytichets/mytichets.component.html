@@ -1,0 +1,92 @@
+
+<app-header></app-header>
+<div class="bgimage" style="overflow:hidden; min-height: 90vh; max-height: 100vh;"><!--Background-->
+  <div class="gridalignmenthor" id="search" style="width: 40%;grid-gap:10%;padding: 10px;"> 
+  <input class="itemhor1 mobileinput" type="string" class="form-control" id="SearchTichet" aria-describedby="search" placeholder="{{this.searchplaceholder}}">
+  <div>
+  <button type="input" class="btn btn-dark itemhor2 mobilebtn" style="margin-left: -1%;min-width:100px;max-width: 30%;"(click)="this.searchtichet()">Search</button>
+  <button  type="input" class="btn btn-secondary mobilebtn" style="min-width:100px;max-width: 30%;position: absolute;margin-left: 10px;"(click)="this.showHistory()">History</button>
+</div> 
+</div>
+
+
+  <div style="align-self: center;width:100%;height: 730px; overflow: auto;" ><!--Horizontal allignment-->
+    <table class="table"style="align-self: center;">
+      <tbody>
+        <tr  style="cursor: pointer;">
+          
+          <td *ngFor="let file of tichets" class="section tichetbg" [hidden]="file.name.includes(this.HistoryString)" [attr.id]="file.tichetId" [attr.name]="file.name" (click)="open(content)" style="background-color: rgba(255, 255, 255, 0.8);text-align: center; height: 402px;border: 10px;border-color: black;">
+            
+            
+            <!-- Modal -->
+            <ng-template #content let-modal>
+              <div class="text-center" [attr.id]="file.tichetId+100">
+              <div class="modal-header" style="border: solid black 1px;">
+                
+                <h5 class="modal-title text-center" id="exampleModalLabel">{{file.name}}</h5><br>
+                
+                
+              </div>
+              <div class="modal-body" style="border: solid black 1px;">
+                <h5 style="text-decoration:solid underline;">Valid from: </h5>
+                <h5 style="color: rgb(40, 44, 163);text-decoration: none;">{{processDate(file.validtime,file.initialHour)}}</h5>
+                <h5 style="text-decoration:solid underline;">Valid until: </h5>
+                <h5 style="color: rgb(26, 149, 32);text-decoration: none;">{{processDate(file.validtime,null)}}</h5>
+                <h5>Location: {{file.location}}</h5>
+                <h5>Space: {{file.individualSpaceId}}</h5>
+                <h5>License plate: {{file.licensePlate}}</h5>
+                <h5>Issued to: {{this.service.decodedName}}</h5>
+                <h5>Payed: {{file.payed}}&nbsp;Lei</h5>
+                <qrcode [qrdata]="(file.qrCode).toString()" [width]="256" [errorCorrectionLevel]="'M'"[allowEmptyString]="true"[hidden]="false"></qrcode>
+              </div></div>
+              <div class="modal-footer" style="border: solid black 1px;">
+                <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+                <button type="button" class="btn btn-dark" [hidden]="this.qrValid(file.qrCode)" (click)="getpdf(file.tichetId+100)">
+                  get pdf
+                </button>
+              </div>
+            
+            </ng-template>
+
+            <!--Face of the ticket-->
+            <div class="d-flex" style="text-align: center;align-items: center;justify-content: center;">
+            <div class="info"[attr.id]="file.tichetId"[attr.name]="file.name">
+              <div class="title"[attr.id]="file.tichetId"[attr.name]="file.name" ><h3 style="text-decoration: underline dashed aqua;">{{file.name}}</h3></div>&nbsp;
+            
+              &nbsp;<br>
+            <h5  style="text-decoration: underline rgb(0, 0, 0);">
+              License Plate:</h5>
+            <h5>"{{file.licensePlate}}"</h5>
+              
+            &nbsp;<h5 style="text-decoration: underline rgb(0, 0, 0);">Location:</h5>
+            <h5 >"{{file.location}}"</h5>
+            &nbsp;
+            <h5 style="text-decoration: underline rgb(0, 0, 0);">Valid through:</h5>
+            
+            <h6 style="color: limegreen;">{{processDate(file.validtime,null)}}</h6>
+            
+           
+            </div>
+          </div>
+          
+          </td>
+        
+        </tr>
+      </tbody>
+     
+     
+    </table><!--End of parking spaces-->
+
+  
+
+       
+    
+
+   
+
+</div><!--End of Background-->
+
+
+
+
+<app-footer></app-footer>

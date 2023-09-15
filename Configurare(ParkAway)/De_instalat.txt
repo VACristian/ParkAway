@@ -1,0 +1,52 @@
+
+1(Primul pas,instalare):
+Aveti nevoie de:
+-nodejs(18.13.0 LTS):https://nodejs.org/en/
+-Angularjs(npm install -g @angular15.0.4)**
+-Angular Cli(npm install -g @angular/cli)**
+
+**= se vor instala dintr-un Node.js command promt ca adminstrator
+
+-visual studio code 
+-visual studio 2022(ASP.NET and web development,node.js development,.NET desktop development,Data storage and processing)
+-SQL server management studio
+-SQL server 2019
+
+
+
+Versiuni:
+
+
+Angular CLI: 15.0.5
+Node: 18.13.0
+Package Manager: npm 8.19.3
+OS: win32 x64
+
+Angular: 15.0.4
+... animations, common, compiler, compiler-cli, core, forms
+@angular-devkit/core            15.0.5
+@angular-devkit/schematics      15.0.5
+@angular/cli                    15.0.5
+@schematics/angular             15.0.5
+rxjs                            7.5.7
+typescript                      4.8.4
+
+
+
+2:(Remediere eroare de rulare a scripturilor):
+
+In caz de eroare pentru executie script(windows):
+
+Deschideti un cmd ca administrator si rulati:
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+
+
+3:(Rulare proiect in sine)
+
+Deschideti folderul ParkAway in visual studio code(explorer) cu trust workspace
+Si ParkAwayServer.SLN in visual studio
+
+In visual studio code rulati intr-un terminal ng serve --o pt a porni serverul
+Iar in visual studio un run fara debug pt a ramane pornit serverul asp.net

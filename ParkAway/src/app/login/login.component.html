@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="mirrorbgimage d-flex align-items-center" style="min-height: 90vh; max-height: 100vh; padding-bottom: 10vh;">
+    <div class="container">
+        <div class="align-items-center d-flex " style="align-items: center; justify-content: center; -webkit-transform: scaleX(-1);transform: scaleX(-1); ">
+            <form class="form-inline" #form = "ngForm" (submit)="service.onlogin(form)">
+                <div class="form-group">
+                    <label for="InputUserName">Username</label>
+                    <input type="text" class="form-control" #UserName = "ngModel" [(ngModel)]="service.loginform.UserName" name = "UserName" id="InputUserName" placeholder="Enter username">
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPassword">Password</label>
+                    <input type="password" class="form-control" #Password = "ngModel" [(ngModel)]="service.loginform.Password" name = "Password" id="InputPasswordRegister" placeholder="Password">
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-dark" style="margin-top: 11%; width: 100%;"(click)="open(content)">Log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="alert-modal">
+      <ngb-alert class="alert" [dismissible]="false" type="{{this.service.alertState}}">{{this.service.alertText}}<button type="button" class="btn" (click)="modal.dismiss()"style="position:absolute;right:-10px;bottom:30px;cursor: pointer;border:none">x</button></ngb-alert><hr>
+      
+    </div>
+  </ng-template>
+<app-footer></app-footer>

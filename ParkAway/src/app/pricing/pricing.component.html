@@ -1,0 +1,117 @@
+<app-header></app-header>
+<div class="mirrorbgimage d-flex align-items-center" style="min-height: 90vh; max-height: 100vh; padding-bottom: 10vh;">
+  
+    <div class="container">
+        <div class="align-items-center d-flex " style="align-items: center; justify-content: center; -webkit-transform: scaleX(-1);transform: scaleX(-1); ">
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="row">
+                        <h4 ><label for="InputOre" style="text-decoration: dashed underline aqua;">Valid hours:</label></h4>
+                        <div class="col">
+                        <h5>From:</h5> <ngb-timepicker  name="hour1" [(ngModel)]="selectedTime" [class.highlighted-hour]="InitialRedHours.includes(selectedTime.hour)" [hourStep]="timepickerConfig.hourStep" [minuteStep]="timepickerConfig.minuteStep" [disabled]="timepickerConfig.disabled" ></ngb-timepicker>
+                           <div class="trsp" [class.highlighted-hour]="InitialRedHours.includes(selectedTime.hour)" >Busy</div>
+                        </div>
+                        <div class="col">
+                            
+                           <h5>&nbsp;&nbsp;&nbsp;&nbsp;To:</h5> <ngb-timepicker id="validto" name="validto" [(ngModel)]="validTime" [hourStep]="timepickerConfig.hourStep" [minuteStep]="timepickerConfig.minuteStep" [disabled]="timepickerConfig.disabled" ></ngb-timepicker>
+                        </div>
+                        
+                      
+                      <div class="col" style="height: 300px; overflow-y: scroll;">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Reservations</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let file of currentReservations">
+                              <td class="td1">{{file.initialHour}}:00 To {{this.processDate(file.validtime,null)}}</td>
+                            </tr>
+                            
+                          </tbody>
+                        </table>
+                      </div>
+
+                      </div>
+                    <div>
+                    
+                    <div style="position: absolute;right: 41%;">
+                    
+                    </div>
+        
+                      
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col1">
+                    <label for="datepicker">The date when the thichet will be used:</label>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <input class="form-control" readonly autocomplete="off" placeholder="yyyy-mm-dd" name="datepicker" [(ngModel)]="selectedDate" ngbDatepicker [minDate]="{ year: this.CurrentTime.getFullYear(), month: this.CurrentTime.getMonth()+1, day: this.CurrentTime.getDate() }" #dp="ngbDatepicker">
+                          <div class="input-group-append ">
+                            <button class="btn btn-outline-secondary " (click)="dp.toggle()" type="button" style="left: 3px;">
+                              <i class="fa fa-calendar"></i>Click to select date
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col1">
+                    <label for="InputOre">License plate number:</label>
+                    <input type="string" class="form-control" id="licenseplate" aria-describedby="licenseplate">
+                </div>
+            </div>
+                    </div>
+                </div>
+            </div>
+                <div><br>
+                    
+                    <button [hidden]="this.estimatepressed" type="input" class="btn btn-dark" style="margin-left: 2%;"(click)="this.goToPay()">Pay</button>
+                    <button style="margin-left: 2%;" class="btn btn-dark" (click)="calculatetichetprice()">Estimate:&nbsp;{{this.price}}&nbsp;Lei</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="alert-modal">
+    <ngb-alert class="alert" [dismissible]="false" type="danger">{{this.pricingAlertText}}<button type="button" class="btn" (click)="modal.dismiss()" style="position:absolute;right:-10px;bottom:30px;cursor: pointer;border:none">x</button></ngb-alert>
+    <hr>
+  </div>
+</ng-template>
+
+<ng-template #payment let-modal>
+  
+  
+    <div class="modal-header" style="border: solid black 1px;">Payment</div>
+
+    <div class="modal-body">
+     
+      <form (submit)="processPay()">
+        <div class="form-control">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required><br>
+      </div>
+      <div class="form-control">
+        <label for="expirationDate">Expiration Date:</label>
+        <input type="text" id="expirationDate" name="expirationDate" [(ngModel)]="expirationDate" required><br>
+        </div>
+        <div class="form-control">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" [(ngModel)]="cvv" required>
+      </div><br>
+        
+        <div class="gridalignmenthor">
+        <button type="submit" class="btn btn-dark itemhor1" style="margin-left: 2%;height: 50px;"(click)="addAnim('animLoc')">Submit Payment</button><div class="itemhor2" id="animLoc" ></div></div>
+        
+      </form>
+    </div>
+    <div class="modal-footer" style="border: solid black 1px;">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
+    </div>
+</ng-template>
+
+
+<app-footer></app-footer>

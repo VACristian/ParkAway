@@ -1,0 +1,33 @@
+tr {
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+td {
+    width: 25%;
+    box-sizing: border-box;
+    padding: 10px;
+    
+  }
+
+input{
+  min-width: 300px;
+}
+
+@media screen and (min-width: 300px) and (max-width:900px) {
+ 
+  .mobileinput{
+    min-width: 150px;
+    grid-column: 1;
+  }
+  .mobilebtn{
+    min-width: 100px;
+    grid-column: 1;
+  }
+  td {
+    width: 100%;
+    padding-top: 100%; /* Set the height equal to the width */
+  }
+}
+  

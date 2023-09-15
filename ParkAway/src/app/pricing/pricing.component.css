@@ -1,0 +1,82 @@
+@keyframes successAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+.success-animation {
+  display: inline-block;
+  animation: successAnimation 4s linear;
+  transform: scale(0.8);
+  top: -15%;
+  left: 40%;
+  color: green;
+  position: relative;
+}
+
+.success-animation::after {
+  content: '\2714'; /* Checkmark symbol */
+  display: block;
+  font-size: 42px;
+  color: green;
+  
+}
+.trsp{
+  color: transparent;
+}
+.highlighted-hour {
+  background-color: red;
+  
+  font-weight: 900;
+  color:black;
+  opacity: 1;
+}
+
+@media screen and (max-width: 480px) {
+    div{
+        text-align: center;
+    
+  }
+  .col{
+    display: flex;
+   
+    justify-content: center;
+  }
+}
+
+.table1 {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.td1 {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.table-container {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+tr {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+td {
+  width: 25%;
+  box-sizing: border-box;
+  padding: 10px;
+  
+}

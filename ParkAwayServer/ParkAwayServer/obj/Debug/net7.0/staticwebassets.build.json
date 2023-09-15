@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "EI4sZPmuLm3iRkWAjk/0DWT7acrbnnu6wOWkPQnY66I=",
+  "Source": "ParkAwayServer",
+  "BasePath": "_content/ParkAwayServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

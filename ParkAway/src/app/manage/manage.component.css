@@ -1,0 +1,174 @@
+
+
+.blackbgandtext{
+    color: rgba(255,255,255,1);
+    background-color: rgb(0, 0, 0);
+  }
+
+  .highlight1 {
+    animation-name: highlight1;
+    animation-duration: 1s;
+    
+  
+  
+  }
+  .highlight2{
+    animation-name: highlight2;
+    animation-duration: 1s;
+  }
+  
+  
+  .section {
+    
+    padding: 20px;
+    
+    
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    
+  }
+  
+  .info {
+    margin-top: 10px;
+    
+  }
+  
+
+  
+  
+  @keyframes highlight2 {
+    0% {
+      background-size: 100%;
+      color: rgba(0,0,0,1);
+    }
+  
+  
+  
+  100% {
+    background-color: rgba(0,0,0,0);
+    color: rgba(0,0,0,1);
+  }
+  }
+  
+  @keyframes highlight1 {
+    0% {
+      background-color: transparent;
+      
+    }
+    
+
+    
+    100% {
+      background-color: rgba(0,0,0,1);
+      color: rgba(255,255,255,1);
+    }
+  
+    
+    
+  }
+
+  
+
+.blackbgandtext{
+  color: rgba(255,255,255,1);
+  background-color: rgb(0, 0, 0);
+}
+
+.highlight1 {
+  animation-name: highlight1;
+  animation-duration: 1s;
+  
+
+
+}
+.highlight2{
+  animation-name: highlight2;
+  animation-duration: 1s;
+}
+
+
+.section {
+  
+  padding: 20px;
+  
+  
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  
+}
+
+.info {
+  margin-top: 10px;
+  
+}
+
+
+
+
+@keyframes highlight2 {
+  0% {
+    background-size: 100%;
+    color: rgba(0,0,0,1);
+  }
+
+
+
+100% {
+  background-color: rgba(0,0,0,0);
+  color: rgba(0,0,0,1);
+}
+}
+
+@keyframes highlight1 {
+  0% {
+    background-color: transparent;
+    
+  }
+  
+
+  
+  100% {
+    background-color: rgba(0,0,0,1);
+    color: rgba(255,255,255,1);
+  }
+
+  
+  
+}
+
+.parking-space {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ccc;
+  text-align: center;
+  line-height: 50px;
+}
+
+.occupied {
+  background-color: red;
+  color: white;
+}
+
+.tr1 {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.td1 {
+  width: 10%;
+  box-sizing: border-box;
+  padding: 25px;
+  
+}  

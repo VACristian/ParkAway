@@ -1,0 +1,70 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark headerdropin" style="min-width: 280px;z-index: 1;">
+  <a class="navbar-brand" style = "margin-left: 12px;" href="javascript:void(0);" (click)="this.service.navigateto('/home')"><img src="assets/minilogo/miniparklogo.png" width="34px" height="40px"> ParkAway</a>
+  
+  <div>
+    <div ngbDropdown class="d-inline-block" style="align-items: right;left:-20px">
+          <button type="button" class="btn btn-dark navbar-toggler" id="dropdownBasic1" ngbDropdownToggle>
+            <span class="navbar-toggler-icon"></span>
+          </button>
+         
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="left:-72px" class="ngdropdown">
+        <div [hidden]="!this.service.showLoginAndRegister">
+        <button ngbDropdownItem type="button"(click)="this.service.navigateto('/login')" class="button">Login</button>
+
+        <button ngbDropdownItem type="button"(click)="this.service.navigateto('/register')" class="button">Register</button>
+        </div>
+        <button ngbDropdownItem type="button"(click)="this.service.navigateto('/create-tichet')"class="button">Get a ticket</button>
+
+        <button ngbDropdownItem type="button"(click)="this.service.navigateto('/mytichets')"class="button">My tickets</button>
+
+        <button [hidden]="this.service.showLoginAndRegister" ngbDropdownItem type="button"(click)="this.service.onlogoutuser()"class="button">Log out</button>
+
+        <p [hidden]="this.service.showLoginAndRegister" class="paragraph">Logged in as: {{this.service.decodedName}} </p>
+        </div>
+      
+        </div>
+      </div>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="javascript:void(0);" (click)="this.service.navigateto('/home')">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);"(click)="this.service.navigateto('/create-tichet')">Get a ticket</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0);"(click)="this.service.navigateto('/mytichets')">My tickets</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link">Logged in as: {{this.service.decodedName}}</a>
+    </li>
+    <li class="nav-item" [hidden]="this.service.hideAdminPanels">
+      <div>
+        <div ngbDropdown class="d-inline-block ">
+              <button type="button" class="btn btn-dark nav-link" id="dropdownBasic2" ngbDropdownToggle>
+               Admins only
+              </button>
+             
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="ngdropdown">
+            <button type="button" class="btn btn-dark"[hidden]="this.service.hideAdminPanels"><a class="nav-link px-2 text-white" href="javascript:void(0);"(click)="this.service.navigateto('/register')">Admin register</a></button>
+            <button type="button" class="btn btn-dark"[hidden]="this.service.hideAdminPanels"><a class="nav-link px-2 text-white" href="javascript:void(0);"(click)="this.service.navigateto('/manage')">Manage spaces</a></button>
+           
+            </div>
+          
+            </div>
+          </div>
+    </li>
+      <li class="nav-item">
+        <div style="align-items: right; justify-content: right; position: absolute; right: 1%;">
+        <a class="nav-link" href="javascript:void(0);" (click)="this.service.onlogoutuser()" style="align-items: right; justify-content: right; position: absolute; right:220%;" [hidden]="this.service.showLoginAndRegister">Logout</a>
+        <div [hidden]="!this.service.showLoginAndRegister">
+        <button type="button"(click)="this.service.navigateto('/login')" class="btn btn-light" style="align-items: right; justify-content: right; position: absolute; right: 125%;">Login</button>
+        <button type="button"(click)="this.service.navigateto('/register')" class="btn btn-light">Register</button>
+      </div></div>
+      
+      </li>
+    </ul>
+  </div>
+</nav>

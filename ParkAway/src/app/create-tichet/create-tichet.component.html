@@ -1,0 +1,128 @@
+<!--Html pentru modale,parcari,google maps-->
+<app-header></app-header>
+
+<div class="bgimage" style="overflow-y: scroll; min-height: 90vh; max-height: 100vh;"><!--Background-->
+  <div class ="gridalignmenthor" style="overflow-y: visible;"><!--Horizontal allignment-->
+    <table class="table"  class="itemhor1"><!--Parking spaces-->
+      <tbody>
+        <tr  *ngFor="let file of Spaces" (click)="openModal(content);this.service.serviceIndividualSpcId=null;" (mouseenter)="onhoveranimate(file.spaceId)" (mouseleave)="onleaveremove(file.spaceId)" style="cursor: pointer;border: 10px white;">
+          <td class="section" [attr.id]="file.spaceId" [attr.name]="file.name" style="text-align: center;border: 1px solid white;"(click)="this.lotId(file.spaceId)">
+            <div class="info"[attr.id]="file.spaceId"[attr.name]="file.name">
+              <div class="title"[attr.id]="file.spaceId"[attr.name]="file.name" >{{file.name}}</div>
+            {{file.location}}<br>
+            {{file.description}}<br>
+            
+            <div class="fillbar" style="background-color: transparent;"[attr.id]="file.spaceId"[attr.name]="file.name">
+              
+              </div></div>
+               <!-- Modal -->
+            <ng-template #content let-modal >
+              <div class="text-center"style="overflow-y: auto;height: 700px;">
+              <div class="modal-header" style="border: solid black 1px;">
+                
+                <h5 class="modal-title text-center" id="exampleModalLabel">{{file.name}}</h5><br>
+                
+               
+
+               
+                
+              </div>
+              <div class="modal-body" >
+                
+                  <div class="gridalignmenthor">
+                  <div class="itemhor1">
+                  <label for="IHour">From:</label>
+                  <input id="IHour" style="width: 50px;">
+                  </div>
+                  <div class="itemhor2">
+                  <label for="THour">To:</label>
+                  <input id="THour" style="width: 50px;">
+                  </div>
+                  <div class="itemhor3">
+                    <button class="btn btn-secondary" style="height: 70px;text-align: center; " (click)="quickPark();">Quick park</button>
+                  </div>
+                </div>
+                <br>
+                <label for="datepicker">The date when the thichet will be used:</label>
+                <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" readonly autocomplete="off" placeholder="yyyy-mm-dd" name="qdatepicker" [(ngModel)]="quickDate" ngbDatepicker [minDate]="{ year: this.CurrentTime.getFullYear(), month: this.CurrentTime.getMonth()+1, day: this.CurrentTime.getDate() }" #dp="ngbDatepicker">
+                      <div class="input-group-append ">
+                        <button class="btn btn-outline-secondary " (click)="dp.toggle()" type="button" style="left: 3px;">
+                          <i class="fa fa-calendar"></i>Click to select date
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                <table style="width: 400px;margin-left: auto;margin-right: auto;">
+                <tr class="tr1"  style="align-items: center;text-align: center;justify-content: center;">
+                  
+                  <td class="td1"*ngFor="let space of IndividualSpace" [hidden]="space.spaceId!==file.spaceId" style="width: 100px;margin-top: -10px;">
+                    
+                    
+                  <div *ngIf="space.spaceId===file.spaceId"  class="parking-space" style="height: 100px;cursor: pointer;" [attr.id]="space.id" [attr.name]="'Single'" (click)="onSpaceClick(space.id,space.isFull)">
+                    
+                    
+                      {{space.id}}
+                      
+                     <div [hidden]="!space.isFull" style="background-image: url('assets/ocupat.png');width: 50px;height: 49px;align-self: center;color: red;">&nbsp;</div>
+                
+                
+              </div>
+           
+                  </td>
+                
+                
+                </tr>
+              </table>
+              </div></div>
+              <div class="modal-footer" style="border: solid black 1px;">
+                <button type="button" class="btn btn-secondary" style="margin-right:auto" (click)="modal.dismiss();">Close</button><div style="text-decoration: underline;font-weight: bolder;">Selected:{{this.service.serviceIndividualSpcId}}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-dark" [hidden]="" (click)="onSpaceClick(file.spaceId,false);redirectToPricing()">
+                  Select this space and position
+                </button>
+              </div>
+            
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table><!--End of parking spaces-->
+
+  
+
+    <ng-template #alert let-modal>
+      <div class="alert-modal">
+        <ngb-alert class="alert" [dismissible]="false" type="danger">{{this.alertTxt}}<button type="button" class="btn" (click)="modal.dismiss()"style="position:absolute;right:-10px;bottom:30px;cursor: pointer;border:none">x</button></ngb-alert><hr>
+        
+      </div>
+    </ng-template>
+    
+    <div class="itemhor2" >
+      <google-map  id="gmap"  (mapClick)="mapMoved($event)"
+      width="400px"
+      [center]="center"
+      [zoom]="zoom"
+      >
+      <div *ngFor="let file of Spaces; let i = index">
+        <map-marker name="marker+{{file.spaceId}}" [position]="PositionLatLng(file.lat,file.lng)" [icon]="'assets/parkmarker.png'" (mapClick)="highlightanim(file.spaceId)">
+        </map-marker>
+      </div>
+      
+      
+     
+    </google-map>
+
+    
+    </div>
+    
+            
+  </div><!--End of Horizontal Alignment-->
+    
+
+</div><!--End of Background-->
+
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,96 @@
+<app-header></app-header>
+<div class="bgimage d-flex align-items-center" style="overflow-y: hidden; min-height: 90vh; max-height: 100vh;">
+<div class="container" style="overflow-y: hidden;">
+  <div class="align-items-center d-flex " style="overflow-y: hidden;align-items: center; justify-content: center; padding-bottom: 15vh;">
+<form class="form-inline" [formGroup]="service.usersform" (submit)="service.onregister()">
+<br>
+    <div class="row">
+        <div class="col">
+          <label for="InputName">Name</label>
+          <input type="text" class="form-control" formControlName="Name" placeholder=" Enter name">
+        </div>
+        <div class="col">
+          <label for="InputLastName">Last name</label>
+          <input type="text" class="form-control" formControlName="LastName" placeholder=" Enter last name">
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="InputUsername">User name</label>
+        <input type="text" class="form-control" id="InputUsername" formControlName="UserName" placeholder="Enter username">
+       
+      </div>
+<br>
+    <div class="form-group">
+      <label for="InputEmail">Email address</label>
+      <input type="email" class="form-control" id="InputEmailRegister" formControlName="Email" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+<div formGroupName="Passwords">
+    <div class="form-group">
+      <label for="InputPassword">Password</label>
+      <input type="password" class="form-control" formControlName="Password" id="InputPasswordRegister" placeholder="Password">
+    </div>
+<br>
+    <div class="form-group">
+        <label for="InputConfirmPassword">Confirm password</label>
+        <input type="password" class="form-control" formControlName="ConfirmPassword" id="InputPasswordConfirmRegister"  placeholder="Confirm password">
+      </div>
+    </div>
+<br>
+    <div class="form-group">
+        <label for="InputStreet">Street</label>
+        <input type="text" class="form-control" formControlName="Street" placeholder="Enter street">
+      </div>
+<br>
+    <div class="row">
+        <div class="col">
+          <label for="InputCity">City</label>
+          <input type="text" class="form-control" formControlName="City" placeholder=" Enter city">
+        </div>
+        <div class="col">
+          <label for="InputStreetNr">Street number</label>
+          <input type="text" class="form-control" formControlName="StreetNumber" placeholder="Enter street number">
+        </div>
+      </div>
+<br>
+      <div class="row">
+        
+        <div class="col">
+          <label for="InputTel">Telephone number</label>
+          <input type="text" class="form-control" id="InputTel" formControlName="PhoneNumber" placeholder="Enter telephone number"></div>
+          <div class="col">
+          <button type="submit" class="btn btn-dark" style="margin-top: 12%; width: 100%;"(click)="open(content)">Sign Up</button>
+          <button type="button" [hidden]="this.service.hideAdminPanels" class="btn btn-secondary" style="margin-top: 12%; width: 100%;"(click)="open(admincontent)">Admin sign up</button>
+        </div>
+      </div>
+
+  </form>
+</div>
+</div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="alert-modal">
+    <ngb-alert class="alert" [dismissible]="false" type="{{this.service.alertState}}">{{this.service.alertText}}<button type="button" class="btn" (click)="modal.dismiss()"style="position:absolute;right:-10px;bottom:30px;cursor: pointer;border:none">x</button></ngb-alert><hr>
+    
+  </div>
+</ng-template>
+
+<ng-template #admincontent let-modal>
+  <div class="d-flex" style="max-width: 200px;align-items: center;">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()"style="position:absolute;right:5px;bottom:40px;cursor: pointer;border:none">x</button>
+    <div class="modal-body">
+      Select user type:
+      <select aria-label="Default select example" class="" [(ngModel)]="this.service.userType" [ariaPlaceholder]="'click'">
+        <option disabled selected value="">Select an option</option>
+        <option value="Users">Users</option>
+        <option value="Admins">Admins</option>
+      </select>
+    </div>
+    
+  </div>
+</ng-template>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ParkAway</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/miniparkicon.ico">
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=initMap" async defer></script>
+  <script>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("gmap"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+      var marker = new google.maps.Marker({
+    position: this.center,
+    map: map,
+    title: 'Hello World!'
+  });
+    }
+  </script>
+<google-map  id="gmap" class="itemhor2" (mapClick)="mapMoved($event)"
+  
+  [center]="center"
+  [zoom]="zoom"
+  >
+  <google-map-marker [position]="center" [icon]="'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'"></google-map-marker>
+</google-map>
+</head>
+<body class="d-flex flex-column min-vh-100">
+  <app-root></app-root>
+</body>
+</html>
