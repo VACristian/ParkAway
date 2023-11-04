@@ -2,6 +2,7 @@
 
 6. ParkAway – Aplicație pentru gestiunea locurilor
 de parcare
+
     În acest capitol este descrisă aplicația Web ParkAway. Aplicația a fost creată cu scopul de
 a facilita modul în care se rezervă și se achiziționează un bilet pentru un loc de parcare plătit, cât
 și ca o platformă care reușește cu ușurință să gestioneze aceste locuri de parcare și să afișeze
