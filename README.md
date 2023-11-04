@@ -66,3 +66,47 @@ urmează să fie creat (nume, locație, descriere, poziționarea pe hartă, num�
 disponibile, preț).
 5. Unelte statistice pentru a determina încărcarea unui loc de parcare pe o anumită perioadă
 de timp.
+
+
+
+
+6.2 Prezentarea arhitecturii aplicației
+    API-ul este implementat folosind ASP .NET Core utilizând instrumentele și clasele puse
+la dispoziție de acesta, printre care se numără: modelul MVC și pachetele NuGet.
+Clasele folosite pentru implementare sunt grupate în pachete acestea fiind:
+1. Model - Pachet dedicat entităților care urmează să fie salvate în baza de date.
+2. Controller - Acest pachet este compus din totalitatea claselor de tip controller
+care au rol de a gestiona cererile primite de către server.
+3. JSONWebToken - Este un pachet dedicat pentru gestionarea sistemului de
+autentificare pentru utilizatori.
+4. Entity - Este un pachet compus din interfețele responsabile pentru operațiile din
+cadrul bazei de date a aplicației.
+5. Route - Reprezintă pachetul responsabil pentru gestionarea și configurarea rutelor
+din cadrul aplicației.
+6. Program – Reprezintă pachetul responsabil cu majoritatea opțiunilor de
+configurare necesare serviciilor din cadrul aplicației.
+Pentru implementarea unui API este important să existe o gestionare corectă a modelelor
+și o folosire corectă a pachetului MVC. Acestea definesc structura entităților trimise de utilizator
+care vor fi prelucrate de către pachetele de tip controller pentru a returna un răspuns sau pentru
+salvarea acestor entități în baza de date. În următoarea secvență de cod avem un exemplu de model
+folosit pentru spațiul individual:
+namespace ParkAwayServer.Models{
+public class IndividualSpaces
+{
+[Key]
+[Column(TypeName = "decimal")]
+public int Id { get; set; }
+[Column(TypeName = "bit")]
+public bool IsFull { get; set; }
+public int SpaceId { get; set; }
+[ForeignKey("SpaceId")]
+public virtual ParkingSpaces? ParkingSpaces { get; set; }
+}
+}
+    Fiecare variabilă din modelul respectiv are rolul de colectare a informațiilor trimise de un
+administrator în timpul operației de creare a unui lot de parcare nou. În acest caz, acest model
+deservește unui proces de automatizare el fiind auto completat printr-o funcție din Angular
+40
+depinzând de numărul de spații individuale de parcare introdus de către administrator la crearea
+lotului de parcare. Practic în acest exemplu fiecare variabilă este generată cu excepția variabilei
+“SpaceId” care este generată separat la crearea lotului în sine.
